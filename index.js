@@ -5,7 +5,7 @@ const port = 8001;
 
 app.listen(function(err){
     if(err){
-        console.log(`Error on running the server: ${err}`);
+        console.log(`Error on runnnnning the server: ${err}`);
     }
     console.log(`Server is running on port: ${port}`);
 })
