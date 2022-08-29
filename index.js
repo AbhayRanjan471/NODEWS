@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
-const port = 8001;
+const port = 900;
 
 
-app.listen(function(err){
+//use express router
+app.use('/' , require('./routes'))
+
+app.listen(port , function(err){
     if(err){
         console.log(`Error on runnnnning the server: ${err}`);
     }
