@@ -14,6 +14,13 @@ const homeController = require('../controllers/home_controller');
 
 router.get('/' ,homeController.home);
 
+//this route handle the user request
+//when any request will came for /user it will require users
+router.use('/user', require('./users'))
+
+// for anyfurther routes, access from here
+//Syntex: router.use('/routerName', require('./routerfile'));
+
 
 
 
