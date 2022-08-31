@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+
+        <link rel="stylesheet" href="/css/layout.css">
+    
+        <!--using <%- style %> : if there is any style tage in the body it will atuomaticallly put it here  -->
+        <%- style %>
+    </head>
+
+    
+    <body>
+        <!-- udsing partial -->
+        <%- include('_header'); %>
+
+        <!-- body contains the  variable part which would keep on changing as we switch the page -->
+        <!-- here the body will contains the home.ejs or user_profile.ejs file whichever we will search on server -->
+        <%- body %>
+
+        <%- include('_footer'); %>
+
+        <!-- id there is script tag in the body it will automatically put it here -->
+        <%- script %>
+    </body>
+
+    
+</html>

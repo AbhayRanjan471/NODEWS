@@ -2,6 +2,19 @@ const express = require('express');
 const app = express();
 const port = 8000;
 
+// recuring the express-ejs-layout
+const expressLayouts = require('express-ejs-layouts');
+
+//middleawre
+//setting up the static file , in this we will tell for which folder should the file look out for the static file
+app.use(express.static('./assets'));
+
+//now after getting the express-ejs library we will tell our app to use it
+app.use(expressLayouts);
+
+// extract style and scripts from sub pages into the layout
+app.set('layout extractStyles' , true);
+app.set('layout extractScripts', true);
 
 //use express router
 app.use('/' , require('./routes'))
@@ -30,4 +43,8 @@ step3: npm install ejs (to use the templates ie, the view engine)
  we will go to the file package.json under the script part we will
  "start": "nodemon index.js"
 now after doing this we can run our server using ( npm start)
+*/
+
+/* Installing express ejs library to make a common layout
+ npm install express-ejs-layouts
 */
