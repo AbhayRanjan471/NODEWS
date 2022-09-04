@@ -1,9 +1,19 @@
 const express = require('express');
+//reqyiring the cookie
+const cookieParser = require('cookie-parser');
 const app = express();
 const port = 8000;
 
-// recuring the express-ejs-layout
+const db = require('./config/mongoose');
+
+//middleware can be used to manipulate data, we can change data
+app.use(express.urlencoded());
+
+// requring the express-ejs-layout
 const expressLayouts = require('express-ejs-layouts');
+
+//tell the app to use cookie
+app.use(cookieParser());
 
 //middleawre
 //setting up the static file , in this we will tell for which folder should the file look out for the static file
@@ -48,3 +58,16 @@ now after doing this we can run our server using ( npm start)
 /* Installing express ejs library to make a common layout
  npm install express-ejs-layouts
 */
+
+/* Sst up our own cookies , using cookies parser
+step1: npm install cookie-parser   // in the terminal
+step2:we will require 'cookie-parser'
+step3: we will tell the app to use it
+
+*/
+
+/* Authentication STeps
+1. Create user (Sign up)
+2. Create session (Sign In)
+3. show details of signed in user on profile page
+4. sigh out */
