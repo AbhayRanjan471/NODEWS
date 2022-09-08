@@ -71,3 +71,9 @@ step3: we will tell the app to use it
 2. Create session (Sign In)
 3. show details of signed in user on profile page
 4. sigh out */
+
+/* Installing Passport.js 
+// https://www.passportjs.org/packages/passport-local/
+step1: npm install passport
+step2: npm install passport-local
+*/
