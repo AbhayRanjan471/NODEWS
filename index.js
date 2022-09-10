@@ -3,14 +3,19 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
 const port = 8000;
-
+// requring the express-ejs-layout
+const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
+
+// used for session coookie
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
 
 //middleware can be used to manipulate data, we can change data
 app.use(express.urlencoded());
 
-// requring the express-ejs-layout
-const expressLayouts = require('express-ejs-layouts');
+
 
 //tell the app to use cookie
 app.use(cookieParser());
@@ -26,13 +31,32 @@ app.use(expressLayouts);
 app.set('layout extractStyles' , true);
 app.set('layout extractScripts', true);
 
-//use express router
-app.use('/' , require('./routes'))
+
 
 //middleware
 //set up the view engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
+
+app.use(session({
+    name: 'codeial', //name of the cookie is codeial
+    //TODO change the secret before deployment in production mode
+    secret: 'blahsomething',
+    saveUninitialized: false, //whenever there is a request which is not inililize which means user has not logged-in on that case we don't want to save the extra data so we set it to false 
+    resave: false,//if some sort of data is present in the session data(users inform) , using this there is no need to write user data again and again 
+    //giving an age to the cookies , that for how long it will survive nd after that it will expire
+    cookie: {
+        maxAge: (1000 * 60 * 100) 
+    }
+}));
+//tell the app to use passport
+app.use(passport.initialize());
+app.use(passport.session());
+//set up the current user which we created in the passport-local-strategy.js
+app.use(passport.setAuthenticatedUser);
+
+//use express router
+app.use('/' , require('./routes'))
 
 app.listen(port , function(err){
     if(err){
@@ -76,4 +100,5 @@ step3: we will tell the app to use it
 // https://www.passportjs.org/packages/passport-local/
 step1: npm install passport
 step2: npm install passport-local
+step3: npm install express-session 
 */
