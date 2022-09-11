@@ -16,4 +16,4 @@ db.once('open', function(){
 })
 
 // to make this file usable we need to export this
-// module.exports = db;
+module.exports = db;
