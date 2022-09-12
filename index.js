@@ -49,7 +49,7 @@ app.use(session({
     resave: false,//if some sort of data is present in the session data(users inform) , using this there is no need to write user data again and again 
     //giving an age to the cookies , that for how long it will survive nd after that it will expire
     cookie: {
-        maxAge: (1000 * 60 * 100) 
+        maxAge: (1000 * 60 * 100) //its calculated in mili-sec
     },
     store: MongoStore.create(
         {

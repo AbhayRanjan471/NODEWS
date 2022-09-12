@@ -10,6 +10,7 @@ const User = require('../models/user');
 // authentication using passport
 //we are telling the passport to use this LocalStrategy
 passport.use(new LocalStrategy({
+    //the thing which we are going to keep unique
     usernameField: 'email'
    },
    //callback function
@@ -40,8 +41,8 @@ passport.use(new LocalStrategy({
 // Serializing the user to decide which key is to be kept in the cookies
 passport.serializeUser(function(user, done){
     //we want to store user id in the encripted formate into the cookie
-    //Serializing has user but it only passes the user_id to the session OR
-    //it will store only store the user.id in the session cookie
+    //Serializing has user but it only passes the user_id to the session cookie OR
+    //it will store only the user.id in the session cookie
     done(null, user.id);
 });
 

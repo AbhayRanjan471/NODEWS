@@ -65,8 +65,23 @@ module.exports.create = function(req , res){
 }
 
 //get the sign in data
+//Sign in and create a session for the user
 module.exports.createSession = function(req, res){
     //TODO later
     //redirecting to the home page
     return res.redirect('/');
+}
+
+module.exports.destroySession = function(req , res){
+    // this request we get from passport.js
+    req.logout(function(err){
+        if(err){
+            // console.log('getting error while logging out', err);
+            // return;
+         return next(err);
+        }
+        return res.redirect('/');
+    }); 
+     
+   
 }
