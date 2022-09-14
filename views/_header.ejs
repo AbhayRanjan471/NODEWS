@@ -3,24 +3,40 @@
 <!-- to add this header in the home.ejs or user.ejs we will write this in the home.ejs file-->
  
 <header>
-    Page Header !
+    <div id="container">
+        <div><h2>codeial</h2></div>
+    
 
-    <!-- adding the items of authentication items -->
-    <ul style="list-style: none;">
-        <% if (locals.user){ %>
-            <li>
-                <a href="/user/profile"><%= user.name %></li></a>
-            <li>
-                <a href="/user/sign-out">Sign Out</a>
-            </li>
+        <div id="list-container">
+            <!-- adding the items of authentication items -->
+            <ul style="list-style: none;">
+                <% if (locals.user){ %>
+                    <div>
+                    <li>
+                        <a href="/user/profile"><%= user.name %></a>
+                    </li>
+                    </div>
 
-        <% }else{ %>
-            <li>
-                <a href="/user/sign-in">Sign In</a>
-            </li>
-            <li>
-                <a href="/user/sign-up">Sign Up</a>
-            </li>
-        <% } %>
-    </ul>
+                    <div>
+                    <li>
+                        <a href="/user/sign-out">Sign Out</a>
+                    </li>
+                </div>
+
+                <% }else{ %>
+                    <div>
+                    <li>
+                        <a href="/user/sign-in">Sign In</a>
+                    </li>
+                </div>
+
+                <div>
+                    <li>
+                        <a href="/user/sign-up">Sign Up</a>
+                    </li>
+                </div>
+                <% } %>
+            </ul>
+        </div>
+    </div>
 </header>

@@ -1,0 +1,27 @@
+footer{
+    background-color: rgb(78, 75, 75);
+    opacity: 0.7;
+    color: white;
+    // background-color: transparent;
+    #footer-container{
+        display: flex;
+        border: 1px solid black;
+        
+        div{
+            border: 1px solid black;
+            margin-left: 5px;    
+        
+            a{
+                text-decoration: none;    
+                color: white;  
+            }
+        }
+        #fo-list2 a p{
+            text-align: center;
+            padding: 4px;
+            margin-top: 12px;
+        }
+
+        
+    }
+}

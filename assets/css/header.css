@@ -1,0 +1,30 @@
+header {
+  position: sticky;
+  top: 0px;
+  background-color: #79cffd;
+  color: white; }
+  header div {
+    border: solid 1px black; }
+  header #container {
+    display: flex;
+    justify-content: space-between; }
+    header #container h2 {
+      max-height: 5px;
+      font-size: 30px;
+      text-align: center;
+      margin-top: 1px;
+      margin-left: 20px;
+      font-weight: bold; }
+    header #container #list-container {
+      display: flex;
+      padding: 0;
+      margin: 0px;
+      margin-right: 10px;
+      max-height: 40px;
+      margin-top: -7px; }
+      header #container #list-container div {
+        display: inline-block;
+        margin-left: 10px; }
+        header #container #list-container div a {
+          text-decoration: none;
+          color: white; }

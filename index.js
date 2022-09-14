@@ -14,6 +14,16 @@ const passportLocal = require('./config/passport-local-strategy');
 
 const MongoStore = require('connect-mongo');
 
+const sassMiddleware = require('node-sass-middleware');
+//we will use the sass just before the server start
+app.use(sassMiddleware({
+    src: './assets/scss', //source: form where we picked up the scss file to convert it into css
+    dest: './assets/css', // destiniation : where we need to put our css file
+    debug: true,         // to display the error
+    outputStyle: 'extended',  // to want every thing in multiple line
+    prefix: '/css'   //where should my server look out for css file
+}))
+
 //middleware can be used to manipulate data, we can change data
 app.use(express.urlencoded());
 
@@ -119,3 +129,7 @@ step3: npm install express-session
 
 /*Setting up MOngo store for session cookies
 step1: npm install connect-mongo */
+
+/*Sass middleware  
+https://www.npmjs.com/package/node-sass-middleware
+ste1: npm install node-sass-middleware */

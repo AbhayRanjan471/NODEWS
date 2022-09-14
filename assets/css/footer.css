@@ -1,0 +1,17 @@
+footer {
+  background-color: #4e4b4b;
+  opacity: 0.7;
+  color: white; }
+  footer #footer-container {
+    display: flex;
+    border: 1px solid black; }
+    footer #footer-container div {
+      border: 1px solid black;
+      margin-left: 5px; }
+      footer #footer-container div a {
+        text-decoration: none;
+        color: white; }
+    footer #footer-container #fo-list2 a p {
+      text-align: center;
+      padding: 4px;
+      margin-top: 12px; }

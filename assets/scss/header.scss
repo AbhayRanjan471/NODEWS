@@ -1,0 +1,43 @@
+header{
+    position: sticky;
+    top: 0px;
+    background-color: rgb(121, 207, 253);
+    color: white;
+    div{
+        border: solid 1px black; 
+        
+       
+    }
+    #container{
+     
+        display: flex;
+        justify-content: space-between; 
+        
+        h2{
+            max-height: 5px;
+            font-size: 30px;
+            text-align: center;
+            margin-top: 1px;
+            margin-left: 20px;
+            font-weight: bold;           
+        }
+        
+        #list-container{
+            display: flex;
+            padding: 0;
+            margin: 0px;
+            margin-right: 10px;
+            max-height: 40px;
+            margin-top: -7px;
+            div{
+                display: inline-block;
+                margin-left: 10px;
+
+                a{
+                    text-decoration: none;
+                    color: white;
+                }
+            }
+        }
+    }         
+}
