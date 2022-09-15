@@ -9,6 +9,7 @@ console.log('router loaded')
 
 //import home_controller
 const homeController = require('../controllers/home_controller');
+const { route } = require('./posts');
 
 
 
@@ -17,6 +18,9 @@ router.get('/' ,homeController.home);
 //this route handle the user request
 //when any request will came for /user it will require users
 router.use('/user', require('./users'));
+
+//this route handle the post request
+router.use('/posts', require('./posts'));
 
 // for anyfurther routes, access from here
 //Syntex: router.use('/routerName', require('./routerfile'));
