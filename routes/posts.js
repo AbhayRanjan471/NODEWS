@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
 const postsController = require('../controllers/posts_controller');
 
-router.post('/create', postsController.create);
+//added a middleware to check the authentication that the user who is posting is authenticated or not 
+//NOw if the user is not authenticated he/she cannot create an action
+router.post('/create',passport.checkAuthentication, postsController.create);
 
 module.exports = router;
