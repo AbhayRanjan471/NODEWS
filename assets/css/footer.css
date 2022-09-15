@@ -3,10 +3,8 @@ footer {
   opacity: 0.7;
   color: white; }
   footer #footer-container {
-    display: flex;
-    border: 1px solid black; }
+    display: flex; }
     footer #footer-container div {
-      border: 1px solid black;
       margin-left: 5px; }
       footer #footer-container div a {
         text-decoration: none;

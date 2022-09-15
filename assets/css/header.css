@@ -3,8 +3,6 @@ header {
   top: 0px;
   background-color: #79cffd;
   color: white; }
-  header div {
-    border: solid 1px black; }
   header #container {
     display: flex;
     justify-content: space-between; }
