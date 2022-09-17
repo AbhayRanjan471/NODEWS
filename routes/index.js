@@ -22,6 +22,8 @@ router.use('/user', require('./users'));
 //this route handle the post request
 router.use('/posts', require('./posts'));
 
+router.use('/comments', require('./comments'))
+
 // for anyfurther routes, access from here
 //Syntex: router.use('/routerName', require('./routerfile'));
 

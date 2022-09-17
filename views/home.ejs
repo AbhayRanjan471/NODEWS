@@ -1,4 +1,5 @@
  
+<!-- <link rel="stylesheet" href="/css/layout.css"> -->
 
 <h1>Codeial Abahy / <%= title %> </h1>
 
@@ -17,13 +18,25 @@
         <div id="posts-list-container">
            <ul style="list-style:none;">
                 <!-- traversing over the posts data base -->
-                <% for(posts of posts){ %>
+                <% for(post of posts){ %>
                  <li>
                     <p>
-                      <%= posts.content %>
+                      <%= post.content %>
                       <br>
-                      <small><%= posts.user.name %></small>
+                      <small><%= post.user.name %></small>
                     </p>
+                    <!-- for comment section -->
+                    <div class="post-comments">
+                        <!-- check for authentication visible to only authenticated user only -->
+                        <% if(locals.user){ %>
+                                <form action="/comments/create" method="POST">
+                                        <input type="text" name="content" placeholder="Type Here to add comment...">
+                                        <input type="hidden" name="post" value="<%= post._id %>">
+                                        <input type="submit"  value="Add Comment"> 
+                                </form>
+                        <% } %>
+                        
+                    </div>
                  </li>
                 <% } %>
                 
