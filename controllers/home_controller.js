@@ -1,3 +1,4 @@
+const { populate } = require('../models/comment')
 const Post = require('../models/post')
 
 module.exports.home = function(req, res){
@@ -24,7 +25,16 @@ module.exports.home = function(req, res){
     // to fetch out which user has posted the comment we need to pre-populate the user from the the posts database using the refer user_id
     //finding all the post [Post.find({})] and populating user of each post [.populate('user')] after that doing the callBack [.exec(function(err, posts)]
     // sifted the call back in exec
-    Post.find({}).populate('user').exec(function(err, posts){
+    //we are populating the comment the user who has commented the post
+    Post.find({})
+    .populate('user')
+    .populate({
+        path: 'comments',
+        populate: { //further populate
+            path: 'user'
+        }
+    })
+    .exec(function(err, posts){
         return res.render('home',{
             title: 'Codeial | Home',
             posts: posts
