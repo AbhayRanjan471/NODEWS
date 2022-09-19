@@ -21,11 +21,16 @@
                 <% for(post of posts){ %>
                  <li>
                     <p>
+                        <% if(locals.user && locals.user.id == post.user.id) { %>
+                        <small>
+                                <a href="/posts/destroy/<%= post.id %>">X</a>
+                        </small>
+                        <% } %>
                       <%= post.content %>
                       <br>
                       <small><%= post.user.name %></small>
                     </p>
-                    <!-- for comment section -->
+                    <!-- for comment section creating the comment -->
                     <div class="post-comments">
                         <!-- check for authentication visible to only authenticated user only -->
                         <% if(locals.user){ %>
@@ -37,7 +42,7 @@
                                 </form>
                         <% } %>
 
-                        <!-- loading the comments -->
+                        <!-- loading the comments from the data base to the screen -->
                         <div class="post-comments-list">
                                 <ul id="post-comments-<%= post._id %>">
                                         <% for(comment of post.comments){ %>

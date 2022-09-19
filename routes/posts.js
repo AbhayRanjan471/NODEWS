@@ -8,4 +8,6 @@ const postsController = require('../controllers/posts_controller');
 //NOw if the user is not authenticated he/she cannot create an action
 router.post('/create',passport.checkAuthentication, postsController.create);
 
+router.get('/destroy/:id', passport.checkAuthentication , postsController.destroy);
+
 module.exports = router;
