@@ -7,7 +7,7 @@ const passport = require('passport');
 const usersController = require('../controllers/users_controller');
                     
                      //middleware function whcih we created in passprot-local-strategy.js
-router.get('/profile',passport.checkAuthentication ,usersController.profile);
+router.get('/profile/:id',passport.checkAuthentication ,usersController.profile);
 
 router.get('/sign-up',usersController.signUp);
 

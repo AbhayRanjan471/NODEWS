@@ -26,3 +26,14 @@
             </ul>
         </div>
 </section>
+
+<!-- TO  Show the list of user-->
+<section id="user-friends">
+        <h4>Friends</h4>
+        <% for(u of all_users) { %>
+            <p>
+                <!-- creating an anchor tag of the user so when we will click on any particular user it will redirect us to that user profile (/user/profile/<%= u.id%>) -->
+                <a href="/user/profile/<%= u.id %>"><%= u.name %></a>
+            </p>
+       <% } %>
+</section>
