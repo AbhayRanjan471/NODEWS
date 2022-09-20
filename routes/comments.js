@@ -8,4 +8,6 @@ const commentsController = require('../controllers/comments_controller')
 //NOw if the user is not authenticated he/she cannot create an action
 router.post('/create',passport.checkAuthentication, commentsController.create);
 
+router.get('/destroy/:id' , passport.checkAuthentication , commentsController.destroy);
+
 module.exports = router;

@@ -27,3 +27,27 @@ module.exports.create = function(req, res){
         }
     })
 }
+
+//for DELETING the Comments
+module.exports.destroy = function(req, res){
+    Comment.findById(req.params.id , function(err , comment){
+        if(comment.user == req.user.id){
+
+            //we will store the Id of the post which is present in the Comment Schema, So that we can delete the comment from the Post Schema also
+            //suppose if we deleted the comment without storing the id of post , to fir Post Scehma me jo humne comments array banaya hai usme jo comment hai 
+            //use nai hata paye ge .
+            let postId = comment.post;
+
+            comment.remove(); //deleting the comment
+
+            //through this we will be deleting the reference Id of the comment , that's why we have store the post Id before deleting the commet
+            //  {$pull: {comments: req.params.id}}  : this is the way to pull out the id from the post 
+            Post.findByIdAndUpdate(postId, {$pull: {comments: req.params.id}}, function(err , post){
+                return res.redirect('back');
+            })
+        }
+        else{
+            return res.redirect('back');
+        }
+    })
+}
