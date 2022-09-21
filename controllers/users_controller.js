@@ -11,8 +11,20 @@ module.exports.profile = function(req, res){
             title: "User Profile",
             profile_user: user
         });
-    })
-    
+    })   
+}
+
+// updating the user
+module.exports.update = function(req, res){
+    //adding this condition so that any loged in user can't change any other user id
+    if(req.user.id == req.params.id){
+                           // req.body OR {name: req.body.name , email: req.body.email}
+        User.findByIdAndUpdate(req.params.id , req.body, function(err, user){
+            return res.redirect('back');
+        })
+    }else{
+        return  res.status(401).send('Unauthorized');
+    }
 }
 
 //render the sign up page
