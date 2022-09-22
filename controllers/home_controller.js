@@ -2,7 +2,7 @@ const { populate } = require('../models/comment')
 const Post = require('../models/post')
 const User = require('../models/user')
 
-module.exports.home = function(req, res){
+module.exports.home = async function(req, res){
      
     /*
     //reading the cookies
@@ -22,6 +22,7 @@ module.exports.home = function(req, res){
     })
     */
 
+    /*
     //POPULATE the user of each Post
     // to fetch out which user has posted the comment we need to pre-populate the user from the the posts database using the refer user_id
     //finding all the post [Post.find({})] and populating user of each post [.populate('user')] after that doing the callBack [.exec(function(err, posts)]
@@ -46,6 +47,37 @@ module.exports.home = function(req, res){
          })
         
     })
+    */
+
+    // Convrting to Async Await 
+    try{
+
+        //POPULATE the user of each Post
+        // to fetch out which user has posted the comment we need to pre-populate the user from the the posts database using the refer user_id
+        //finding all the post [Post.find({})] and populating user of each post [.populate('user')] 
+            let posts = await Post.find({})
+            .populate('user')
+            .populate({
+                path: 'comments',
+                populate: { //further populate
+                    path: 'user'
+                }
+            });
+
+        let users = await User.find({});
+
+        return res.render('home',{
+            title: 'Codeial | Home',
+            posts: posts,
+            all_users: users
+        });
+
+    }
+    catch(err){
+        console.log("Error", err);
+        return;
+    }
+
 }
 
 /* For posts
