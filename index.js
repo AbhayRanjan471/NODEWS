@@ -15,6 +15,10 @@ const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo');
 
 const sassMiddleware = require('node-sass-middleware');
+
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
+
 //we will use the sass just before the server start
 app.use(sassMiddleware({
     src: './assets/scss', //source: form where we picked up the scss file to convert it into css
@@ -79,6 +83,11 @@ app.use(passport.session());
 //set up the current user which we created in the passport-local-strategy.js
 app.use(passport.setAuthenticatedUser);
 
+//use the flash
+//'flash' uses session cookies so we are writing it after the seesion 
+app.use(flash());
+app.use(customMware.setFlash);
+
 //use express router
 app.use('/' , require('./routes'))
 
@@ -133,3 +142,8 @@ step1: npm install connect-mongo */
 /*Sass middleware  
 https://www.npmjs.com/package/node-sass-middleware
 ste1: npm install node-sass-middleware */
+
+/* Flash map 
+https://www.npmjs.com/package/connect-flash
+step1: npm install connect-flash
+*/

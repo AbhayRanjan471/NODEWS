@@ -16,6 +16,12 @@
     <body>
         <!-- udsing partial -->
         <%- include('_header'); %>
+        <!-- adding the flash -->
+        <% if(flash.success && flash.success.length > 0){ %>
+            <h5>
+                <%= flash.success %>
+            </h5>
+            <% } %>
 
         <!-- body contains the  variable part which would keep on changing as we switch the page -->
         <!-- here the body will contains the home.ejs or user_profile.ejs file whichever we will search on server -->
