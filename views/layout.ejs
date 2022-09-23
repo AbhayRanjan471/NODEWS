@@ -7,6 +7,9 @@
         <link rel="stylesheet" href="/css/layout.css">
         <link rel="stylesheet" href="/css/header.css">
         <link rel="stylesheet" href="/css/footer.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     
         <!--using <%- style %> : if there is any style tage in the body it will atuomaticallly put it here  -->
         <%- style %>
@@ -16,12 +19,7 @@
     <body>
         <!-- udsing partial -->
         <%- include('_header'); %>
-        <!-- adding the flash -->
-        <% if(flash.success && flash.success.length > 0){ %>
-            <h5>
-                <%= flash.success %>
-            </h5>
-            <% } %>
+       
 
         <!-- body contains the  variable part which would keep on changing as we switch the page -->
         <!-- here the body will contains the home.ejs or user_profile.ejs file whichever we will search on server -->
@@ -33,6 +31,29 @@
 
         <!-- id there is script tag in the body it will automatically put it here -->
         <%- script %>
+
+        <script>
+            //  <!-- adding the flash -->
+        <% if(flash.success && flash.success.length > 0){ %>
+            new Noty({
+                theme : 'relax',
+                text: "<%= flash.success %>",
+                type: 'success',
+                layout: 'topRight',//where to place on the screen
+                timeout: 1500 // timing 
+            }).show();
+            <% } %>
+
+            <% if(flash.error && flash.error.length > 0){ %>
+            new Noty({
+                theme : 'relax',
+                text: "<%= flash.error %>",
+                type: 'error',
+                layout: 'topRight',
+                timeout: 1500
+            }).show();
+            <% } %>
+        </script>
     </body>
 
     
