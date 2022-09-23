@@ -28,11 +28,12 @@ module.exports.create = async function(req, res){
             user: req.user._id // we just want to store the user id nd not whole user so we did this
        });
 
+       req.flash('success', 'Post Published!');
        return res.redirect('back');
    }
    catch(err){
-      console.log('Error', err);
-      return;
+       req.flash('error', err);
+       return res.redirect('back');
    }
 }
 
@@ -72,14 +73,16 @@ module.exports.destroy = async function(req, res){
             //we will delete all the comment related to that post and if suppose there is an error we will return back
             await Comment.deleteMany({post: req.params.id});
             
+            req.flash('success', 'Post and associated comments deleted');
             return res.redirect('back');
         }
         else{
+            req.flash('error', 'PYou cannot delete this post!');
             //when the user didn't matched
             return res.redirect('back');
         }
     }catch(err){
-        console.log('Error', err);
-        return;
+        req.flash('error', err);
+       return res.redirect('back');
     }
 }

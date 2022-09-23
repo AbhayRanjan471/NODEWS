@@ -11,22 +11,24 @@ const User = require('../models/user');
 //we are telling the passport to use this LocalStrategy
 passport.use(new LocalStrategy({
     //the thing which we are going to keep unique
-    usernameField: 'email'
+    usernameField: 'email',
+    passReqToCallback: true
    },
    //callback function
-   function(email, password , done){
+   function(req,email, password , done){
        //find a user and establish the identity
        //{email(this email is the property which we are looking at , which is on the Schema): email(this email is the value which is passed in the above function)}
        User.findOne({email: email}, function(err, user){
          
         if(err){
-            console.log('Error in finding user --> Passport');
+            //represent a flash message when there is an error
+             req.flash('error', err);
             //done() takes two argument 1st the error and 2nd something
             return done(err);
         }
         //if the user is not found or the password donesn't match
         if(!user || user.password != password){
-            console.log('Invalid Username/Password');
+            req.flash('error', 'Invalid Username/Password');
             return done(null, false);
         }
         //if the user if found we just pass-on the user
