@@ -18,6 +18,9 @@
                     //appending  the list to the container whic we made in home.ejs
                     //prepend: this means newly post will appended in the top posiiton
                     $('#posts-list-container>ul').prepend(newPost);
+
+                    //giving a delete button to the Post
+                    deletePost($(' .delete-post-button', newPost))
                 }, error: function(error){
                     console.log(error.responseText);
                 }
@@ -58,6 +61,25 @@
                     
                 </div>
                 </li>`)
+    }
+
+
+    // Method to DELETE  post from DOM
+    //created a function which sends a post id to be deleted (this function will send a AJAX request)
+    let deletePost = function(deleteLink){
+        $('deleteLink').click(function(e){
+            e.preventDefault(); //blocking the natural behavious of deleting so that we can perfom the delete usng AJAX
+
+            $.ajax({
+                type: 'get',
+                url: $(deleteLink).prop('href'),
+                success: function(data){
+                    $(`#post-${data.data.post_id}`).remove();
+                },error: function(error){
+                    console.log(error.responseText);
+                }
+            })
+        })
     }
 
 

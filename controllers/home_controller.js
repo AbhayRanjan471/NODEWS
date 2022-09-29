@@ -56,6 +56,7 @@ module.exports.home = async function(req, res){
         // to fetch out which user has posted the comment we need to pre-populate the user from the the posts database using the refer user_id
         //finding all the post [Post.find({})] and populating user of each post [.populate('user')] 
             let posts = await Post.find({})
+            .sort('-createdAt') // this is a sort function
             .populate('user')
             .populate({
                 path: 'comments',
