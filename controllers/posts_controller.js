@@ -23,10 +23,21 @@ module.exports.create = async function(req, res){
     //creating a new Post
     //saving the data coming from the 'form' into the data base
     //will wait till the post get created
-       await Post.create ({
+      let post =  await Post.create ({
             content: req.body.content,
             user: req.user._id // we just want to store the user id nd not whole user so we did this
        });
+
+       //Checking if the request is an AJAX request 
+       if(req.xhr){
+        //we return JSON with status(200)
+        return res.status(200).json({
+            data: {
+                post: post
+            },
+            message: "Post created" // included a message
+        })
+       }
 
        req.flash('success', 'Post Published!');
        return res.redirect('back');
