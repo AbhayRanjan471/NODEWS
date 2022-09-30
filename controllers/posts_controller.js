@@ -98,7 +98,7 @@ module.exports.destroy = async function(req, res){
             return res.redirect('back');
         }
         else{
-            req.flash('error', 'PYou cannot delete this post!');
+            req.flash('error', 'You cannot delete this post!');
             //when the user didn't matched
             return res.redirect('back');
         }

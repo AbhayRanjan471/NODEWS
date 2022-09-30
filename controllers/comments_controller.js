@@ -43,11 +43,25 @@ module.exports.create = async function(req, res){
                 user: req.user._id
             });
 
+            post.comments.push(comment);
+            post.save();
+
+            //Checking if the request is an AJAX request 
+            if(req.xhr){
+                //we return JSON with status(200)
+                return res.status(200).json({
+                    data: {
+                        comment: comment
+                    },
+                    message: "comment created" // included a message
+                })
+               }
+
                 //when the comments get created we will add comments to the post
                 // PostSchema contains the filed comment , which is of type error
-                post.comments.push(comment);
+                // post.comments.push(comment);
                 //whenever we are updating something after that we need to call the save()
-                post.save();//after calling this it gets save in the dataBase
+                // post.save();//after calling this it gets save in the dataBase
 
                 res.redirect('/');
         }

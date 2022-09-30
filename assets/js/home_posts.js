@@ -22,14 +22,14 @@
                     //giving a delete button to the Post
                     deletePost($(' .delete-post-button', newPost))
                 }, error: function(error){
-                    console.log(error.responseText);
+                    console.log(error.responseText); //responseText returns the text received from a server 
                 }
             })
         });
     }
 
     // Method to create a post in DOM
-    let newPostDom = function(post){
+    let newPostDom = function(post){ 
         return $(`<li id="post-${post._id}">
                 <p>
                     <!-- for deleting the post -->
@@ -47,7 +47,7 @@
                     <!-- check for authentication visible to only authenticated user only -->
                     
                             
-                            <form action="/comments/create" method="POST">
+                            <form action="/comments/create" class="new-comment-form" id="post-${post._id}-comments-form" method="POST">
                                     <input type="text" name="content" placeholder="Type Here to add comment..." required>
                                     <input type="hidden" name="post" value="${post._id}">
                                     <input type="submit"  value="Add Comment"> 
@@ -82,8 +82,21 @@
         })
     }
 
+    let postToAjax = function(){
+        $('#posts-list-container>ul>li').each(function() {
+            let self = $(this);
+            let deleteButton = $(' .delete-post-button', self);
+            deletePost(deleteButton);
+
+            // get the post's id by splitting the id attribute
+            let postId = self.prop('id').split("-")[1]
+            new PostComments(postId);
+        });
+    }
+
 
      createPost();
+     postToAjax();
 }
 
 
